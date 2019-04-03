@@ -11,8 +11,6 @@ services:
   chrome:
     restart: always
     image: selenium/node-chrome-debug:3.8.1-aluminum
-    ports:
-      - "5555:5900"
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
@@ -25,12 +23,10 @@ services:
   firefox:
     restart: always
     image: selenium/node-firefox-debug:3.8.1-aluminum
-    ports:
-      - "5556:5900"
     volumes:
       - /dev/shm:/dev/shm
     depends_on:
-      - selenium-hub:hub
+      - selenium-hub
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444

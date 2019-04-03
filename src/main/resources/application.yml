@@ -10,4 +10,5 @@ sprimber:
         enable: true
     tagFilters:
       - "@demo"
+clear
 
