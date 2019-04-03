@@ -1,0 +1,36 @@
+version: "3"
+services:
+#selenium-hub: equivalent to manually running the command docker run -d -p 4444:4444 --name selenium-hub  -P selenium/hub:3.6.0-bromine
+  selenium-hub:
+    restart: always
+    image: selenium/hub:3.8.1-aluminum
+    container_name: selenium-hub
+    ports:
+      - "4444:4444"
+#selenium-chrome equivalent to manually running the command docker run -d --link selenium-hub:hub -P --name chrome selenium/node-chrome-debug:3.6.0-bromine
+  chrome:
+    restart: always
+    image: selenium/node-chrome-debug:3.8.1-aluminum
+    ports:
+      - "5555:5900"
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444
+
+#selenium-firefox equivalent to manually running the command docker run -d --link selenium-hub:hub -P --name firefox selenium/node-firefox-debug:3.6.0-bromine
+  firefox:
+    restart: always
+    image: selenium/node-firefox-debug:3.8.1-aluminum
+    ports:
+      - "5556:5900"
+    volumes:
+      - /dev/shm:/dev/shm
+    depends_on:
+      - selenium-hub:hub
+    environment:
+      - HUB_HOST=selenium-hub
+      - HUB_PORT=4444

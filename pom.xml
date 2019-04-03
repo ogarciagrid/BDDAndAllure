@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.griddynamics.demos</groupId>
+    <artifactId>allure-demo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+
+    <dependencies>
+
+        <!--        Dependencies for GD BDD Framework-->
+        <dependency>
+            <groupId>com.griddynamics.qa</groupId>
+            <artifactId>sprimber-parent</artifactId>
+            <version>1.0.5</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>com.griddynamics.qa</groupId>
+            <artifactId>sprimber-engine</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.griddynamics.qa</groupId>
+            <artifactId>sprimber-spring-boot-autoconfigure</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.griddynamics.qa</groupId>
+            <artifactId>sprimber-spring-boot-starter</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.8.1</version>
+            <scope>compile</scope>
+        </dependency>
+
+<!--        &lt;!&ndash;        Selenide dependencies&ndash;&gt;-->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/com.codeborne/selenide &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>com.codeborne</groupId>-->
+<!--            <artifactId>selenide</artifactId>-->
+<!--            <version>4.8</version>-->
+<!--        </dependency>-->
+
+
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>${project.groupId}</groupId>
+                                    <artifactId>${project.artifactId}</artifactId>
+                                    <version>${project.version}</version>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
