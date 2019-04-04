@@ -1,5 +1,11 @@
 version: "3"
 services:
+  app:
+    build:
+      context: ./local
+    entrypoint: ["/bin/sh", "tmp/provisioning/wait-for-grid.sh"]
+    volumes:
+      - ./local:/tmp/provisioning
   selenium-hub:
     image: selenium/hub:3.141.59-mercury
     container_name: selenium-hub
